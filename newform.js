@@ -58,21 +58,24 @@ function saveData(e){
         // localStorage.removeItem(email);
         let id = userDetails._id
         axios.delete(`https://crudcrud.com/api/a18ba1468e0b40ebbf3a0b06ccceb085/appointmentData/${id}` )
-        .then(res => console.log(res))
+        .then(res => {
+            window.location.reload();
+            console.log(res)})
         .catch(err => console.log(err))
+        
     };
 
     editBtn.addEventListener('click', editData);
     function editData(e){
         e.preventDefault();
         let id = userDetails._id
-        // axios.put(`https://crudcrud.com/api/a18ba1468e0b40ebbf3a0b06ccceb085/appointmentData/${id}`,
-        // {
-        //     'name': document.getElementById('username').value,
-        //     'email':document.getElementById('useremail').value ,
-        //     'phone':document.getElementById('userphone').value
-        // }
-        // ).then(res => console.log(res)).catch(err => console.log(err))
+        axios.put(`https://crudcrud.com/api/a18ba1468e0b40ebbf3a0b06ccceb085/appointmentData/${id}`,
+        {
+            'name': document.getElementById('username').value,
+            'email':document.getElementById('useremail').value ,
+            'phone':document.getElementById('userphone').value
+        }
+        ).then(res => console.log(res)).catch(err => console.log(err))
         document.getElementById('username').value = userDetails.name;
         document.getElementById('useremail').value = userDetails.email;
         document.getElementById('userphone').value = userDetails.phone;
